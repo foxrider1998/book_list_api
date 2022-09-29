@@ -18,10 +18,10 @@ class BooksApiModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['error'] = this.error;
-    data['total'] = this.total;
-    if (this.books != null) {
-      data['books'] = this.books!.map((v) => v.toJson()).toList();
+    data['error'] = error;
+    data['total'] = total;
+    if (books != null) {
+      data['books'] = books!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -54,12 +54,12 @@ class Books {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
-    data['isbn13'] = this.isbn13;
-    data['price'] = this.price;
-    data['image'] = this.image;
-    data['url'] = this.url;
+    data['title'] = title;
+    data['subtitle'] = subtitle;
+    data['isbn13'] = isbn13;
+    data['price'] = price;
+    data['image'] = image;
+    data['url'] = url;
     return data;
   }
 }
@@ -121,23 +121,23 @@ class DetailBookData {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['error'] = this.error;
-    data['title'] = this.title;
-    data['subtitle'] = this.subtitle;
-    data['authors'] = this.authors;
-    data['publisher'] = this.publisher;
-    data['language'] = this.language;
-    data['isbn10'] = this.isbn10;
-    data['isbn13'] = this.isbn13;
-    data['pages'] = this.pages;
-    data['year'] = this.year;
-    data['rating'] = this.rating;
-    data['desc'] = this.desc;
-    data['price'] = this.price;
-    data['image'] = this.image;
-    data['url'] = this.url;
-    if (this.pdf != null) {
-      data['pdf'] = this.pdf!.toJson();
+    data['error'] = error;
+    data['title'] = title;
+    data['subtitle'] = subtitle;
+    data['authors'] = authors;
+    data['publisher'] = publisher;
+    data['language'] = language;
+    data['isbn10'] = isbn10;
+    data['isbn13'] = isbn13;
+    data['pages'] = pages;
+    data['year'] = year;
+    data['rating'] = rating;
+    data['desc'] = desc;
+    data['price'] = price;
+    data['image'] = image;
+    data['url'] = url;
+    if (pdf != null) {
+      data['pdf'] = pdf!.toJson();
     }
     return data;
   }
@@ -154,7 +154,7 @@ class Pdf {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Free eBook'] = this.freeEBook;
+    data['Free eBook'] = freeEBook;
     return data;
   }
 }
