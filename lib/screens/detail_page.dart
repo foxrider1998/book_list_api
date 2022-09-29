@@ -9,7 +9,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart' as http;
 
 class DetailBook extends StatefulWidget {
-  const DetailBook({super.key, bookselected});
+  String bookSelected;
+
+  DetailBook({
+    super.key,
+    required this.bookSelected,
+  });
 
   @override
   State<DetailBook> createState() => _DetailBookState();
@@ -18,10 +23,10 @@ class DetailBook extends StatefulWidget {
 class _DetailBookState extends State<DetailBook> {
   dynamic bookTitleColor = Colors.blue;
   DetailBookData? bookList;
-  dynamic bookSelected = "9781642002140";
 
   fetchBookApi() async {
-    var url = Uri.parse('https://api.itbook.store/1.0/books/${bookSelected}');
+    var url =
+        Uri.parse('https://api.itbook.store/1.0/books/${widget.bookSelected}');
     var response =
         await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
     print('Response status: ${response.statusCode}');

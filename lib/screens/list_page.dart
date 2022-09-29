@@ -6,6 +6,7 @@ import 'dart:ffi';
 import 'package:app_api/model/model.dart';
 import 'package:app_api/screens/detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -62,53 +63,76 @@ class _ListPageState extends State<ListPage> {
                       if (currentBook.subtitle == "") {
                         currentBook.subtitle = "this book has no subtitle";
                       }
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Image.network(
-                                currentBook.image!,
-                                height: 100,
-                                width: 100,
+                      return Container(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              // TotalPage adalah halaman yang dituju
+                              MaterialPageRoute(
+                                builder: (context) => DetailBook(
+                                    bookSelected: currentBook.isbn13),
                               ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 5, left: 5, top: 4),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.blue,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
                                   children: [
-                                    Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: bookTitleColor),
-                                          overflow: TextOverflow.ellipsis,
-                                          "${currentBook.title}",
-                                          textAlign: TextAlign.left,
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.all(10.0),
-                                        child: Text(
-                                          "${currentBook.subtitle}",
-                                        )),
-                                    Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                    Image.network(
+                                      currentBook.image!,
+                                      height: 100,
+                                      width: 100,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Container(
-                                              color: Colors.amber,
+                                          Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Text(
-                                                textAlign: TextAlign.end,
-                                                "${currentBook.price}",
-                                              ))
-                                        ]),
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    color: bookTitleColor),
+                                                overflow: TextOverflow.ellipsis,
+                                                "${currentBook.title}",
+                                                textAlign: TextAlign.left,
+                                              )),
+                                          Padding(
+                                              padding: EdgeInsets.all(10.0),
+                                              child: Text(
+                                                "${currentBook.subtitle}",
+                                              )),
+                                          Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                    color: Colors.amber,
+                                                    child: Text(
+                                                      textAlign: TextAlign.end,
+                                                      "${currentBook.price}",
+                                                    ))
+                                              ]),
+                                        ],
+                                      ),
+                                    )
                                   ],
-                                ),
-                              )
-                            ],
-                          )
-                        ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
                       );
                     },
                   )),
